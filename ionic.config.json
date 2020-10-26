@@ -1,0 +1,7 @@
+{
+  "name": "AvaliacaoEventos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
