@@ -7,6 +7,15 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  paginas = [
+    { titulo: 'Evento', rota: '/evento' },
+    { titulo: 'Participante', rota: '/evento' },
+    { titulo: 'Avaliador', rota: '/evento' },
+    { titulo: 'Apresentação', rota: '/evento' },
+    { titulo: 'Criétiros Avaliação', rota: '/evento' },
+    { titulo: 'Resultado dos Eventos', rota: '/evento' }
+  ];
+
+  constructor() { }
 
 }

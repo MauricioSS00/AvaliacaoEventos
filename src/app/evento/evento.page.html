@@ -1,0 +1,98 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Eventos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid no-padding>
+    <p-table [value]="eventos" [selection]="true" selectionMode="single" [(selection)]="evento" [scrollable]="true"
+      [scrollHeight]="'calc(100vh - 275px)'">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Descrição</th>
+          <th>Data Inicio</th>
+          <th>Data Encerramento</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr [pSelectableRow]="rowData">
+          <td>{{rowData.descricao}}</td>
+          <td>{{rowData.dataIni}}</td>
+          <td>{{rowData.dataFim}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+          <button type="button" pButton icon="pi pi-plus" (click)="dialogCrud(true)"
+            label="Cadastrar"></button>&nbsp;&nbsp;
+          <button type="button" pButton icon="pi pi-pencil" (click)="dialogCrud(false)" [disabled]="!evento.descricao"
+            label="Editar"></button>&nbsp;&nbsp;
+          <button type="button" pButton icon="pi pi-trash" (click)="remover()" [disabled]="!evento.descricao"
+            label="Remover"></button>&nbsp;&nbsp;
+          <button type="button" pButton icon="pi pi-users" (click)="dialogRelAvaliadores=true"
+            [disabled]="!evento.descricao" label="Relacionar Participantes"></button>
+        </div>
+      </ng-template>
+    </p-table>
+  </ion-grid>
+</ion-content>
+
+<p-dialog header="Evento - Cadastro" [(visible)]="dialogCad" [focusOnShow]="false" [responsive]="true" showEffect="fade"
+  [modal]="true" [style]="{width: '300px'}">
+  <div class="p-grid ui-fluid">
+    <div class="p-col-8">
+      <label for="color">Descrição</label>
+      <input pInputText [(ngModel)]="evento.descricao" id="brand">
+    </div>
+    <div class="p-col-4">
+      <label for="color">Data de Inicio</label>
+      <input pInputText [(ngModel)]="evento.dataIni" id="color">
+    </div>
+    <div class="p-col-8">
+      <label for="color">Data de Encerramento</label>
+      <input pInputText [(ngModel)]="evento.dataFim" id="color">
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="pi pi-check" (click)="salvar()" label="Salvar"></button>
+      <button type="button" pButton icon="pi pi-ban" (click)="cancelar()" label="Cancelar"></button>
+    </div>
+  </p-footer>
+</p-dialog>
+
+<p-dialog header="Relacionar Avaliadores" [(visible)]="dialogRelAvaliadores" [focusOnShow]="false" [responsive]="true"
+  showEffect="fade" [modal]="true" [style]="{width: '300px'}">
+  <div class="p-grid ui-fluid">
+    <p-table [value]="avaliadores" [selection]="true" selectionMode="checkbox" [(selection)]="avaliadoresSelecionados">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th>Nome</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr [pSelectableRow]="rowData">
+          <td>
+            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+          </td>
+          <td>{{rowData.nome}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="pi pi-check" (click)="dialogRelAvaliadores=false" label="Salvar"></button>
+      <button type="button" pButton icon="pi pi-ban" (click)="dialogRelAvaliadores=false" label="Cancelar"></button>
+    </div>
+  </p-footer>
+</p-dialog>
