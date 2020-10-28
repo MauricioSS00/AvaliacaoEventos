@@ -8,6 +8,28 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
 
+<ion-content [fullscreen]="true">
+  <ion-grid no-padding>
+    <p-table [value]="" [selection]="true" selectionMode="single" [scrollable]="true"
+      [scrollHeight]="'calc(100vh - 275px)'" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Avaliação</th>
+          <th>Quantidade de Critérios</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr [pSelectableRow]="rowData">
+          <td>{{rowData.descricao}}</td>
+          <td>{{rowData.qtdCriterio}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+          <button type="button" pButton icon="pi pi-plus"></button>
+        </div>
+      </ng-template>
+    </p-table>
+  </ion-grid>
 </ion-content>

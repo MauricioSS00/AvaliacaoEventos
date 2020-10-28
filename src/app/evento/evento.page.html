@@ -12,7 +12,7 @@
 <ion-content [fullscreen]="true">
   <ion-grid no-padding>
     <p-table [value]="eventos" [selection]="true" selectionMode="single" [(selection)]="evento" [scrollable]="true"
-      [scrollHeight]="'calc(100vh - 275px)'">
+      [scrollHeight]="'calc(100vh - 275px)'" [responsive]="true">
       <ng-template pTemplate="header">
         <tr>
           <th>Descrição</th>
