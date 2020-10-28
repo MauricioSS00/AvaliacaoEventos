@@ -12,7 +12,7 @@ export class HomePage {
     { titulo: 'Participante', rota: '/evento' },
     { titulo: 'Avaliador', rota: '/evento' },
     { titulo: 'Apresentação', rota: '/evento' },
-    { titulo: 'Criétiros Avaliação', rota: '/evento' },
+    { titulo: 'Avaliação', rota: '/avaliacao' },
     { titulo: 'Resultado dos Eventos', rota: '/evento' }
   ];
 
