@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-avaliacao',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AvaliacaoPage {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
+
+  cadastrar() {
+    this.router.navigateByUrl('/avaliacao/cadastro', { state: { acessarPartida: true } });
+  }
 
 }

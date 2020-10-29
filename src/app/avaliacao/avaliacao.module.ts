@@ -7,6 +7,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { TooltipModule } from 'primeng/tooltip';
 
 import { AvaliacaoPageRoutingModule } from './avaliacao-routing.module';
 import { AvaliacaoPage } from './avaliacao.page';
@@ -21,6 +22,7 @@ import { AvaliacaoPage } from './avaliacao.page';
     ButtonModule,
     DialogModule,
     InputTextModule,
+    TooltipModule,
 
     AvaliacaoPageRoutingModule
   ],

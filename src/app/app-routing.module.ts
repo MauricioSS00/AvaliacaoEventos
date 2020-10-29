@@ -3,6 +3,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'avaliacao/cadastro',
+    loadChildren: () => import('./avaliacao-cadastro/avaliacao-cadastro.module').then( m => m.AvaliacaoCadastroPageModule)
+  },
+  {
     path: 'avaliacao',
     loadChildren: () => import('./avaliacao/avaliacao.module').then( m => m.AvaliacaoPageModule)
   },

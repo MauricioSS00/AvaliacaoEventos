@@ -27,7 +27,8 @@
       </ng-template>
       <ng-template pTemplate="summary" let-rowData>
         <div style="text-align:left">
-          <button type="button" pButton icon="pi pi-plus"></button>
+          <button pTooltip="Cadastrar" tooltipPosition="top" type="button"
+            (click)="cadastrar()" class="botao-primario" pButton icon="pi pi-plus"></button>
         </div>
       </ng-template>
     </p-table>

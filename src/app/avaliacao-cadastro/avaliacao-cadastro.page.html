@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Avaliação - Cadastro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="formulario">
+    <form autocomplete="off" [formGroup]="form">
+      <p-fieldset legend="Dados da Avaliação">
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>Nome</label><br>
+            <input type="text" class="ui-fluid-metade" pInputText formControlName="nome"> 
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>Descrição</label><br>
+            <textarea [rows]="5" [cols]="30" class="ui-fluid" pInputTextarea formControlName="descricao" autoResize="autoResize"></textarea>
+          </div>
+        </div>
+      </p-fieldset>
+    </form>
+
+    <p-fieldset legend="Critérios">
+      <div class="ui-g">
+        <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+          <label>Descrição do Critério</label><br>
+          <input type="text" [(ngModel)]="criterio.descricao" class="ui-fluid" pInputText> 
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+          <label>Tipo do Critério</label><br>
+          <p-dropdown styleClass="ui-fluid" [(ngModel)]="criterio.tipo" [options]="tiposCriterio"></p-dropdown>
+        </div>
+        <div class="ui-sm-12 ui-md-12 ui-lg-12 ui-fluid">
+          
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+          <button pButton type="button" (click)="adicionarCriterio()" label="Adicionar Critério"></button>
+        </div>
+      </div>
+    </p-fieldset>
+
+    <p-fieldset legend="Critérios">
+      <div class="ui-g">
+        <div *ngFor="let i of criterios" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+          {{i.descricao}}
+        </div>
+      </div>
+    </p-fieldset>
+  </div>
+</ion-content>
