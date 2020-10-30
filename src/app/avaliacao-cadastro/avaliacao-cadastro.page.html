@@ -22,7 +22,7 @@
         <div class="ui-g">
           <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
             <label>Descrição</label><br>
-            <textarea [rows]="5" [cols]="30" class="ui-fluid" pInputTextarea formControlName="descricao" autoResize="autoResize"></textarea>
+            <textarea [rows]="5" [cols]="30" pInputTextarea formControlName="descricao" autoResize="autoResize"></textarea>
           </div>
         </div>
       </p-fieldset>
@@ -40,8 +40,23 @@
           <label>Tipo do Critério</label><br>
           <p-dropdown styleClass="ui-fluid" [(ngModel)]="criterio.tipo" [options]="tiposCriterio"></p-dropdown>
         </div>
-        <div class="ui-sm-12 ui-md-12 ui-lg-12 ui-fluid">
-          
+      </div>
+      <div class="ui-g">
+        <div *ngIf="criterio.tipo === 2" class="ui-sm-12 ui-md-1 ui-lg-1 ui-fluid">
+          <label>Nota Minima</label><br>
+          <input type="text" [(ngModel)]="criterio.notaMin" pKeyFilter="int" class="ui-fluid" pInputText>
+        </div>
+        <div *ngIf="criterio.tipo === 2" class="ui-sm-12 ui-md-1 ui-lg-1 ui-fluid">
+          <label>Nota Maxima</label><br>
+          <input type="text" [(ngModel)]="criterio.notaMax" pKeyFilter="int" class="ui-fluid" pInputText>
+        </div>
+        <div *ngIf="criterio.tipo === 3 || criterio.tipo === 4" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+          <label>Opções de Seleção</label>&nbsp;&nbsp;
+          <i
+            class="pi pi-info-circle" style="font-size: 20px;" (mouseenter)="exibirDesc(op, $event)" (mouseleave)="ocultarDesc(op)">
+          </i>
+          <br>
+          <textarea [rows]="5" [cols]="30" [(ngModel)]="criterio.opcoes" pInputTextarea autoResize="autoResize"></textarea>
         </div>
       </div>
       <div class="ui-g">
@@ -51,12 +66,40 @@
       </div>
     </p-fieldset>
 
-    <p-fieldset legend="Critérios">
-      <div class="ui-g">
-        <div *ngFor="let i of criterios" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
-          {{i.descricao}}
+    <p-fieldset legend="Critérios" *ngIf="criterios.length > 0">
+      <p-fieldset *ngFor="let c of criterios; let i = index" legend="Pergunta {{i+1}}">
+        <div class="ui-g">
+          <div *ngIf="c.tipo == 1" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>{{c.descricao}}</label><br>
+            <textarea [rows]="5" [cols]="30" class="ui-fluid" pInputTextarea autoResize="autoResize"></textarea>
+          </div>
+          <div *ngIf="c.tipo == 2" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>{{c.descricao}}</label><br>
+            <p-slider #nota [min]="c.notaMin" [max]="c.notaMax"></p-slider><br>
+            <label>Nota Informada: {{nota.value}}</label>
+          </div>
+          <div *ngIf="c.tipo == 3" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <span *ngFor="let possivel of c.possiveisRespostas" style="padding: 6px;">
+              <p-checkbox name="possivelResp" value={{possivel}}  label={{possivel}}></p-checkbox>&nbsp;&nbsp;
+            </span>
+          </div>
+          <div *ngIf="c.tipo == 4" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <span *ngFor="let possivel of c.possiveisRespostas" style="padding: 6px;">
+              <p-radioButton name="possivelResp" label={{possivel}}></p-radioButton>&nbsp;&nbsp;
+            </span>
+          </div>
         </div>
-      </div>
+      </p-fieldset>
     </p-fieldset>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar class="formulario">
+    <button pButton type="button" label="Salvar Avaliação"></button>
+  </ion-toolbar>
+</ion-footer>
+
+<p-overlayPanel #op>
+  <label>Informe as possíveis respostas separadas por vírgula ','</label>
+</p-overlayPanel>

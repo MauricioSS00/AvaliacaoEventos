@@ -11,6 +11,11 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FieldsetModule } from 'primeng/fieldset';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { SliderModule } from 'primeng/slider';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 import { AvaliacaoCadastroPageRoutingModule } from './avaliacao-routing.module';
 import { AvaliacaoCadastroPage } from './avaliacao-cadastro.page';
@@ -31,6 +36,11 @@ import { AvaliacaoCadastroPage } from './avaliacao-cadastro.page';
     DropdownModule,
     InputTextareaModule,
     FieldsetModule,
+    KeyFilterModule,
+    SliderModule,
+    OverlayPanelModule,
+    CheckboxModule,
+    RadioButtonModule,
 
     AvaliacaoCadastroPageRoutingModule
   ],

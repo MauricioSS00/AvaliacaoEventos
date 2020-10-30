@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 
+import { OverlayPanel } from 'primeng/overlaypanel';
+
 @Component({
   selector: 'app-cadastro-avaliacao',
   templateUrl: 'avaliacao-cadastro.page.html',
@@ -18,10 +20,11 @@ export class AvaliacaoCadastroPage {
   ];
   criterio = {
     descricao: '',
-    tipo: '',
+    tipo: 1,
     notaMin: 0,
     notaMax: 1,
-    opcoes: ''
+    opcoes: '',
+    possiveisRespostas: []
   };
   criterios: any[] = [];
 
@@ -38,6 +41,30 @@ export class AvaliacaoCadastroPage {
   }
 
   adicionarCriterio() {
+    if (this.criterio.tipo === 3 || this.criterio.tipo === 4) {
+      this.criterio = this.possivelResp(this.criterio);
+    }
     this.criterios.push(this.criterio);
+    this.criterio = {
+      descricao: '',
+      tipo: 1,
+      notaMin: 0,
+      notaMax: 1,
+      opcoes: '',
+      possiveisRespostas: []
+    };
+  }
+
+  possivelResp(criterio: any) {
+    criterio.possiveisRespostas = criterio.opcoes.split(',');
+    return criterio;
+  }
+
+  exibirDesc(overlaypanel: OverlayPanel, event: any) {
+    overlaypanel.toggle(event);
+  }
+
+  ocultarDesc(overlaypanel: OverlayPanel) {
+    overlaypanel.hide();
   }
 }
