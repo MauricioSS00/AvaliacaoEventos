@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Evento - Cadastro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="formulario">
+    <form autocomplete="off" [formGroup]="form">
+      <p-fieldset legend="Dados da Avaliação">
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>Nome</label><br>
+            <input type="text" class="ui-fluid-metade" pInputText formControlName="nome"> 
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-3 ui-lg-3 ui-fluid">
+            <label>Data Inicio</label><br>
+            <p-calendar
+              dateFormat="dd/mm/yy" formControlName="dataIni" [showIcon]="true" [monthNavigator]="true"
+              [yearNavigator]="true" yearRange="2019:2100" [locale]="locale">
+            </p-calendar>
+          </div>
+          <div class="ui-sm-12 ui-md-3 ui-lg-3 ui-fluid">
+            <label>Data Encerramento</label><br>
+            <p-calendar
+              dateFormat="dd/mm/yy" formControlName="dataFim" [showIcon]="true" [monthNavigator]="true"
+              [yearNavigator]="true" yearRange="2019:2100" [locale]="locale">
+            </p-calendar>
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6">
+            <label>Quantidade de Critérios: 0</label>&nbsp;&nbsp;
+            <button pButton type="button" (click)="criteriosAvaliacao()" label="Cadastrar Critérios de Avaliação"></button>
+          </div>
+        </div>
+      </p-fieldset>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="formulario">
+    <button pButton type="button" (click)="salvar()" label="Salvar Evento"></button>
+  </ion-toolbar>
+</ion-footer>

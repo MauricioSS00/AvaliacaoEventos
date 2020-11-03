@@ -13,7 +13,7 @@ export class AvaliacaoPage {
   ) { }
 
   cadastrar() {
-    this.router.navigateByUrl('/avaliacao/cadastro', { state: { acessarPartida: true } });
+    this.router.navigateByUrl('/avaliacao/cadastro');
   }
 
 }

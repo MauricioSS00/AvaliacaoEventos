@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Avaliadores
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid no-padding>
+    <p-table [value]="avaliadores" [selection]="true" selectionMode="single" [(selection)]="avaliador" [scrollable]="true"
+      [scrollHeight]="'calc(100vh - 275px)'" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th>Área</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr [pSelectableRow]="rowData">
+          <td>{{rowData.nome}}</td>
+          <td>{{rowData.area}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+          <button type="button" pButton icon="pi pi-plus" (click)="cadastrar()"
+            pTooltip="Cadastrar Avaliador" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
+          <button type="button" pButton icon="pi pi-pencil" (click)="editar()" [disabled]="!avaliador"
+            pTooltip="Editar Avaliador" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
+          <button type="button" pButton icon="pi pi-trash" (click)="remover()" [disabled]="!avaliador"
+            pTooltip="Remover Avaliador" tooltipPosition="top" class="botao-primario"></button>
+        </div>
+      </ng-template>
+    </p-table>
+  </ion-grid>
+</ion-content>

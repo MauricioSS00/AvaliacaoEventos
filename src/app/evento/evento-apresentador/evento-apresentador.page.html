@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Evento - Apresentadores
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="formulario ui-g">
+    <p-table [value]="apresentadores" [(selection)]="apresentadoresSelecionados" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3em"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+          <th>Nome</th>
+          <th>Curso</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <td style="width: 3em">
+            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+          </td>
+          <td>{{rowData.nome}}</td>
+          <td>{{rowData.curso}}</td>
+        </tr>
+      </ng-template>      
+    </p-table>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="formulario">
+    <button pButton type="button" (click)="salvar()" label="Salvar Apresentadores"></button>
+  </ion-toolbar>
+</ion-footer>

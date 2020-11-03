@@ -9,10 +9,10 @@ export class HomePage {
 
   paginas = [
     { titulo: 'Evento', rota: '/evento' },
-    { titulo: 'Participante', rota: '/evento' },
-    { titulo: 'Avaliador', rota: '/evento' },
+    { titulo: 'Participante', rota: '/participante' },
+    { titulo: 'Avaliador', rota: '/avaliador' },
     { titulo: 'Apresentação', rota: '/evento' },
-    { titulo: 'Avaliação', rota: '/avaliacao' },
+    { titulo: 'Avaliar Apresentação', rota: '/evento' },
     { titulo: 'Resultado dos Eventos', rota: '/evento' }
   ];
 

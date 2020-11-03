@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Participantes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid no-padding>
+    <p-table [value]="participantes" [selection]="true" selectionMode="single" [(selection)]="participante" [scrollable]="true"
+      [scrollHeight]="'calc(100vh - 275px)'" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th>Curso</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr [pSelectableRow]="rowData">
+          <td>{{rowData.nome}}</td>
+          <td>{{rowData.curso}}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+          <button type="button" pButton icon="pi pi-plus" (click)="cadastrar()"
+            pTooltip="Cadastrar Participante" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
+          <button type="button" pButton icon="pi pi-pencil" (click)="editar()" [disabled]="!participante"
+            pTooltip="Editar Participante" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
+          <button type="button" pButton icon="pi pi-trash" (click)="remover()" [disabled]="!participante"
+            pTooltip="Remover Participante" tooltipPosition="top" class="botao-primario"></button>
+        </div>
+      </ng-template>
+    </p-table>
+  </ion-grid>
+</ion-content>

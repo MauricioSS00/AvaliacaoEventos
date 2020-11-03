@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Avaliador - Cadastro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="formulario">
+    <form autocomplete="off" [formGroup]="form">
+      <p-fieldset legend="Dados do Avaliador">
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>Nome</label><br>
+            <input type="text" class="ui-fluid-metade" pInputText formControlName="nome">
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>Área</label><br>
+            <input type="text" class="ui-fluid-metade" pInputText formControlName="area">
+          </div>
+        </div>
+      </p-fieldset>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="formulario">
+    <button pButton type="button" (click)="salvar()" label="Salvar Avaliador"></button>
+  </ion-toolbar>
+</ion-footer>

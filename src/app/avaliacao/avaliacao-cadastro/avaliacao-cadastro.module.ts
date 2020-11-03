@@ -17,13 +17,12 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 
-import { AvaliacaoCadastroPageRoutingModule } from './avaliacao-routing.module';
+import { AvaliacaoCadastroPageRoutingModule } from './avaliacao-cadastro-routing.module';
 import { AvaliacaoCadastroPage } from './avaliacao-cadastro.page';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
     FormsModule,
     ReactiveFormsModule,

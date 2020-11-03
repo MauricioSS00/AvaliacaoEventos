@@ -7,9 +7,10 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { TooltipModule } from 'primeng/tooltip';
 
-import { EventoPage } from './evento.page';
-import { EventoPageRoutingModule } from './evento-routing.module';
+import { ParticipantePage } from './participante.page';
+import { ParticipantePageRoutingModule } from './participante-routing.module';
 
 @NgModule({
   imports: [
@@ -21,9 +22,10 @@ import { EventoPageRoutingModule } from './evento-routing.module';
     ButtonModule,
     DialogModule,
     InputTextModule,
+    TooltipModule,
 
-    EventoPageRoutingModule
+    ParticipantePageRoutingModule
   ],
-  declarations: [EventoPage]
+  declarations: [ParticipantePage]
 })
-export class EventoPageModule { }
+export class ParticipantePageModule { }

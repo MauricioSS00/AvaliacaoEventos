@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -32,31 +33,22 @@ export class EventoPage {
 
   avaliadoresSelecionados: any[];
   avaliadores: any[] = [
-    {nome: 'Mauricio'},
-    {nome: 'Conte'},
-    {nome: 'Gabriel'},
+    { nome: 'Mauricio' },
+    { nome: 'Conte' },
+    { nome: 'Gabriel' },
   ];
   dialogRelAvaliadores = false;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  dialogCrud(cadastrar = false) {
-    this.cadastrando = cadastrar;
-    if (cadastrar) {
-      this.evento = {
-        descricao: '',
-        dataIni: '',
-        dataFim: ''
-      };
-    }
-    this.dialogCad = true;
+  cadastrar() {
+    this.router.navigateByUrl('/evento/cadastro');
   }
 
-  salvar() {
-    if (this.cadastrando) {
-      this.eventos.push(this.evento);
-    }
-    this.dialogCad = false;
+  editar() {
+    this.router.navigateByUrl('/evento/cadastro');
   }
 
   remover() {
@@ -64,8 +56,12 @@ export class EventoPage {
     this.eventos.splice(index, 1);
   }
 
-  relParts() {
+  relAvaliadores() {
+    this.router.navigateByUrl('/evento/avaliador');
+  }
 
+  relApresetador() {
+    this.router.navigateByUrl('/evento/apresentador');
   }
 
   cancelar() {

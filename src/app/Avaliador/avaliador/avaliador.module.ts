@@ -7,10 +7,10 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TooltipModule } from 'primeng/tooltip';
 
-import { HomePage } from './home.page';
-import { HomePageRoutingModule } from './home-routing.module';
+import { AvaliadorPage } from './avaliador.page';
+import { AvaliadorPageRoutingModule } from './avaliador-routing.module';
 
 @NgModule({
   imports: [
@@ -22,10 +22,10 @@ import { HomePageRoutingModule } from './home-routing.module';
     ButtonModule,
     DialogModule,
     InputTextModule,
-    FontAwesomeModule,
+    TooltipModule,
 
-    HomePageRoutingModule
+    AvaliadorPageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [AvaliadorPage]
 })
-export class HomePageModule { }
+export class AvaliadorPageModule { }
