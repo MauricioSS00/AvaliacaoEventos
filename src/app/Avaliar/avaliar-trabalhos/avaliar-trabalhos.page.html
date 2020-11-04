@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Avaliação - Trabalhos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-grid no-padding>
+    <p-dataView #dv [value]="trabalhos" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="nome">
+      <p-header>
+        <div class="ui-helper-clearfix">
+          <div class="ui-g">
+            <div class="ui-sm-6 ui-md-6 ui-lg-6 ui-fluid filter-container">
+              <input type="search" pInputText placeholder="Busque pelo nome" (input)="dv.filter($event.target.value)">
+            </div>
+          </div>
+        </div>
+      </p-header>
+      <ng-template let-trabalho pTemplate="listItem">
+        <div class="ui-g-12">
+          <div class="car-details">
+            <div class="ui-g">
+              <div class="ui-g-12">Nome: <b>{{trabalho.nome}}</b></div>
+              <div class="ui-g-12">Aluno(s): <b>{{trabalho.alunos}}</b></div>
+              <div class="ui-g-12">Curso: <b>{{trabalho.curso}}</b></div>
+              <div class="ui-g-12">Situação: <b>{{trabalho.situacao}}</b></div>
+            </div>
+            <button pButton type="button" icon="far fa-clipboard" pTooltip="Realizar Avaliação" tooltipPosition="top"
+              (click)="acessarTrabalho($event)" [disabled]="trabalho.situacao == 'Avaliado'"></button>
+          </div>
+        </div>
+      </ng-template>
+    </p-dataView>
+  </ion-grid>
+</ion-content>

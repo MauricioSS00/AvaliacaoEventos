@@ -3,8 +3,19 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'avaliar/trabalhos',
+    loadChildren: () => import('./avaliar/avaliar-trabalhos/avaliar-trabalhos.module').then(m => m.AvaliarTrabalhosPageModule)
+  },
+  {
+    path: 'avaliar/cadastro',
+    loadChildren: () => import('./avaliar/avaliar-cadastro/avaliar-cadastro.module').then(m => m.AvaliarCadastroPageModule)
+  },
+  {
+    path: 'avaliar',
+    loadChildren: () => import('./avaliar/avaliar/avaliar.module').then(m => m.AvaliarPageModule)
+  },
+  {
     path: 'avaliador/cadastro',
-    // tslint:disable-next-line: max-line-length
     loadChildren: () => import('./avaliador/avaliador-cadastro/avaliador-cadastro.module').then(m => m.AvaliadorCadastroPageModule)
   },
   {
