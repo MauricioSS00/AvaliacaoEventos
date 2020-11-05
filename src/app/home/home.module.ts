@@ -7,7 +7,6 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
@@ -22,7 +21,6 @@ import { HomePageRoutingModule } from './home-routing.module';
     ButtonModule,
     DialogModule,
     InputTextModule,
-    FontAwesomeModule,
 
     HomePageRoutingModule
   ],
