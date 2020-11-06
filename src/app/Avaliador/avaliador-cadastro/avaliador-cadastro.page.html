@@ -32,6 +32,6 @@
 
 <ion-footer>
   <ion-toolbar class="formulario">
-    <button pButton type="button" (click)="salvar()" label="Salvar Avaliador"></button>
+    <button pButton type="button" [disabled]="form.invalid" (click)="salvar()" label="Salvar Avaliador"></button>
   </ion-toolbar>
 </ion-footer>
