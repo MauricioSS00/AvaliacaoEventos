@@ -10,7 +10,6 @@ import { Avaliador } from './avaliador.model';
 export class AvaliadorService {
 
   private collection = 'Avaliador';
-  avaliadores: Observable<any[]>;
 
   constructor(
     private firestore: AngularFirestore

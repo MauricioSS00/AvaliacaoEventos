@@ -16,7 +16,7 @@
         <div class="ui-g">
           <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
             <label>Nome</label><br>
-            <input type="text" class="ui-fluid-metade" pInputText formControlName="nome"> 
+            <input type="text" class="ui-fluid-metade" pInputText formControlName="descricao"> 
           </div>
         </div>
         <div class="ui-g">
@@ -37,7 +37,7 @@
         </div>
         <div class="ui-g">
           <div class="ui-sm-12 ui-md-6 ui-lg-6">
-            <label>Quantidade de Critérios: 0</label>&nbsp;&nbsp;
+            <label>Quantidade de Critérios: {{form.value.avaliacao ? form.value?.avaliacao?.criterios?.length : 0}}</label>&nbsp;&nbsp;
             <button pButton type="button" (click)="criteriosAvaliacao()" label="Cadastrar Critérios de Avaliação"></button>
           </div>
         </div>
@@ -48,6 +48,6 @@
 
 <ion-footer>
   <ion-toolbar class="formulario">
-    <button pButton type="button" (click)="salvar()" label="Salvar Evento"></button>
+    <button pButton type="button" (click)="salvar()" [disabled]="form.invalid" label="Salvar Evento"></button>
   </ion-toolbar>
 </ion-footer>

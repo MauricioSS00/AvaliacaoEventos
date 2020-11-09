@@ -11,8 +11,8 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid no-padding>
-    <p-table [value]="eventos" [selection]="true" selectionMode="single" [(selection)]="evento" [scrollable]="true"
-      [scrollHeight]="'calc(100vh - 275px)'" [responsive]="true">
+    <p-table [value]="eventos" [selection]="true" selectionMode="single" [(selection)]="eventoSelecionado" [scrollable]="true"
+      scrollHeight="flex" [responsive]="true">
       <ng-template pTemplate="header">
         <tr>
           <th>Descrição</th>
@@ -23,21 +23,21 @@
       <ng-template pTemplate="body" let-rowData>
         <tr [pSelectableRow]="rowData">
           <td>{{rowData.descricao}}</td>
-          <td>{{rowData.dataIni}}</td>
-          <td>{{rowData.dataFim}}</td>
+          <td>{{formatarData(rowData.dataIni.seconds)}}</td>
+          <td>{{formatarData(rowData.dataFim.seconds)}}</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="summary" let-rowData>
         <div style="text-align:left">
           <button type="button" pButton icon="pi pi-plus" (click)="cadastrar()"
             pTooltip="Cadastrar Evento" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
-          <button type="button" pButton icon="pi pi-pencil" (click)="editar()" [disabled]="!evento.descricao"
+          <button type="button" pButton icon="pi pi-pencil" (click)="editar()" [disabled]="!eventoSelecionado"
             pTooltip="Editar Evento" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
-          <button type="button" pButton icon="pi pi-trash" (click)="remover()" [disabled]="!evento.descricao"
+          <button type="button" pButton icon="pi pi-trash" (click)="remover()" [disabled]="!eventoSelecionado"
             pTooltip="Remover Evento" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
-          <button type="button" pButton icon="pi pi-users" (click)="relAvaliadores()" [disabled]="!evento.descricao"
+          <button type="button" pButton icon="pi pi-users" (click)="relAvaliadores()" [disabled]="!eventoSelecionado"
             pTooltip="Relacionar Avaliadores" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
-          <button type="button" pButton icon="fas fa-user-graduate" (click)="relApresetador()" [disabled]="!evento.descricao"
+          <button type="button" pButton icon="fas fa-user-graduate" (click)="relApresetador()" [disabled]="!eventoSelecionado"
             pTooltip="Relacionar Apresentadores" tooltipPosition="top" class="botao-primario"></button>
         </div>
       </ng-template>

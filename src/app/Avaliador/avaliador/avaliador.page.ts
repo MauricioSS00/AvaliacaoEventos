@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 
 import { AvaliadorService } from '../avaliador.service';
 import { Avaliador } from '../avaliador.model';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-avaliador',
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class AvaliadorPage implements OnInit, OnDestroy {
 
-  _subs: Subscription = new Subscription();
+  subs: Subscription = new Subscription();
   avaliador: Avaliador;
   avaliadores: Avaliador[];
 
@@ -28,11 +28,11 @@ export class AvaliadorPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._subs.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   listarAvaliadores() {
-    this._subs.add(this.avaliadorService.listarAvaliador()
+    this.subs.add(this.avaliadorService.listarAvaliador()
       .subscribe(r => {
         this.avaliadores = r;
       }));
