@@ -36,7 +36,7 @@
         <div class="ui-g">
           <div class="ui-sm-12 ui-md-6 ui-lg-6">
             <label>Quantidade de Critérios:
-              {{form.value.avaliacao ? form.value?.avaliacao?.criterios?.length : 0}}</label>&nbsp;&nbsp;
+              {{form.value?.avaliacao?.length}}</label>&nbsp;&nbsp;
             <button pButton type="button" (click)="criteriosAvaliacao()"
               label="Cadastrar Critérios de Avaliação"></button>
           </div>
@@ -50,7 +50,7 @@
         <div class="ui-g" *ngIf="trabalhos.length >= 1">
           <p-fieldset legend="Trabalhos">
             <div class="ui-sm-12 ui-md-12 ui-lg-12" *ngFor="let tr of trabalhos">
-              Trabalho: {{tr.nome}}&nbsp;&nbsp;Link: {{tr.link}}&nbsp;&nbsp;Aluno(s): {{tr.alunos}}&nbsp;&nbsp;Avaliador: {{tr.avaliador}}&nbsp;&nbsp;Curso: {{tr.curso}}&nbsp;&nbsp;
+              Trabalho: {{tr.nome}}&nbsp;&nbsp;Link: {{tr.link}}&nbsp;&nbsp;Aluno(s): {{tr.alunos}}&nbsp;&nbsp;Avaliador: {{nomeAvaliador(tr.avaliador)}}&nbsp;&nbsp;Curso: {{tr.curso}}&nbsp;&nbsp;
               <button pButton type="button" (click)="removerTrabalho(tr)" label="Remover"></button>
             </div>
           </p-fieldset>

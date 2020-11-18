@@ -11,23 +11,6 @@
 
 <ion-content fullscreen>
   <div class="formulario">
-    <form autocomplete="off" [formGroup]="form">
-      <p-fieldset legend="Dados da Avaliação">
-        <div class="ui-g">
-          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
-            <label>Nome</label><br>
-            <input type="text" class="ui-fluid-metade" pInputText formControlName="nome"> 
-          </div>
-        </div>
-        <div class="ui-g">
-          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
-            <label>Descrição</label><br>
-            <textarea [rows]="5" [cols]="30" pInputTextarea formControlName="descricao" autoResize="autoResize"></textarea>
-          </div>
-        </div>
-      </p-fieldset>
-    </form>
-
     <p-fieldset legend="Critérios">
       <div class="ui-g">
         <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
@@ -96,7 +79,7 @@
 
 <ion-footer>
   <ion-toolbar class="formulario">
-    <button pButton type="button" (click)="salvarCriterios()" [disabled]="form.invalid || criterios.length <= 0" label="Salvar Avaliação"></button>
+    <button pButton type="button" (click)="salvarCriterios()" [disabled]="criterios.length <= 0" label="Salvar Avaliação"></button>
   </ion-toolbar>
 </ion-footer>
 

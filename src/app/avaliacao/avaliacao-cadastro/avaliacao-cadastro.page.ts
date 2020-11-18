@@ -12,7 +12,6 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 })
 export class AvaliacaoCadastroPage implements OnInit {
 
-  form: FormGroup;
   dialogCriterio = false;
   tiposCriterio: any[] = [
     { label: 'Descritiva', value: 1 },
@@ -28,26 +27,16 @@ export class AvaliacaoCadastroPage implements OnInit {
     opcoes: '',
     possiveisRespostas: []
   };
-  criterios: any[] = [];
+  criterios: any = [];
 
   constructor(
     private router: Router
-  ) {
-    this.buildForm();
-  }
+  ) { }
 
   ngOnInit() {
     if (this.router.getCurrentNavigation().extras.state) {
-      this.form.patchValue(this.router.getCurrentNavigation().extras.state);
-      this.criterios = this.router.getCurrentNavigation().extras.state.criterios;
+      this.criterios = this.router.getCurrentNavigation().extras.state;
     }
-  }
-
-  buildForm() {
-    this.form = new FormGroup({
-      nome: new FormControl('', Validators.required),
-      descricao: new FormControl('', Validators.required)
-    });
   }
 
   adicionarCriterio() {
@@ -79,7 +68,7 @@ export class AvaliacaoCadastroPage implements OnInit {
   }
 
   salvarCriterios() {
-    EventoService.criteriosAvaliacao.emit(Object.assign(this.form.getRawValue(), { criterios: this.criterios }));
+    EventoService.criteriosAvaliacao.emit(this.criterios);
     this.router.navigateByUrl('/evento/cadastro');
   }
 }

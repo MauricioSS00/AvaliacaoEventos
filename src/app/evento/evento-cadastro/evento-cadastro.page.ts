@@ -39,6 +39,7 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
     avaliador: '',
     curso: '',
     alunos: '',
+    avaliacao: [],
     situacao: 'Não Avaliado'
   };
   avaliadores: any[];
@@ -59,7 +60,9 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
       this.trabalhos = this.form.value.trabalhos;
     }
     this.subs.add(EventoService.criteriosAvaliacao.subscribe((avaliacao: any) => {
+      console.log(avaliacao);
       this.form.get('avaliacao').setValue(avaliacao);
+      this.adicionarAvaliacaoTrabalho();
     }));
   }
 
@@ -73,7 +76,7 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
       descricao: new FormControl('', Validators.required),
       dataIni: new FormControl('', Validators.required),
       dataFim: new FormControl('', Validators.required),
-      avaliacao: new FormControl(''),
+      avaliacao: new FormControl([]),
       trabalhos: new FormControl([])
     });
   }
@@ -123,6 +126,7 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
   }
 
   adicionarTrabalho() {
+    this.trabalho.avaliacao = this.form.value.avaliacao;
     this.trabalhos.push(this.trabalho);
     this.trabalho = {
       nome: '',
@@ -130,6 +134,7 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
       avaliador: '',
       curso: '',
       alunos: '',
+      avaliacao: [],
       situacao: 'Não Avaliado'
     };
     this.form.get('trabalhos').setValue(this.trabalhos);
@@ -139,6 +144,18 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
   removerTrabalho(trabalho: any) {
     this.trabalhos.splice(this.trabalhos.indexOf(trabalho), 1);
     this.form.get('trabalhos').setValue(this.trabalhos);
+  }
+
+  adicionarAvaliacaoTrabalho() {
+    this.trabalhos.forEach(t => {
+      t.avaliacao = this.form.value.avaliacao;
+    });
+  }
+
+  nomeAvaliador(idAvaliador: string) {
+    if (Array.isArray(this.avaliadores)) {
+      return this.avaliadores.filter(a => a.value === idAvaliador)[0].label;
+    }
   }
 
   podeSalvarTrabalho() {
