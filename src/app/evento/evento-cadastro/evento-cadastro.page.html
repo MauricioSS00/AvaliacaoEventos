@@ -16,30 +16,44 @@
         <div class="ui-g">
           <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
             <label>Nome</label><br>
-            <input type="text" class="ui-fluid-metade" pInputText formControlName="descricao"> 
+            <input type="text" class="ui-fluid-metade" pInputText formControlName="descricao">
           </div>
         </div>
         <div class="ui-g">
           <div class="ui-sm-12 ui-md-3 ui-lg-3 ui-fluid">
             <label>Data Inicio</label><br>
-            <p-calendar
-              dateFormat="dd/mm/yy" formControlName="dataIni" [showIcon]="true" [monthNavigator]="true"
+            <p-calendar dateFormat="dd/mm/yy" formControlName="dataIni" [showIcon]="true" [monthNavigator]="true"
               [yearNavigator]="true" yearRange="2019:2100" [locale]="locale">
             </p-calendar>
           </div>
           <div class="ui-sm-12 ui-md-3 ui-lg-3 ui-fluid">
             <label>Data Encerramento</label><br>
-            <p-calendar
-              dateFormat="dd/mm/yy" formControlName="dataFim" [showIcon]="true" [monthNavigator]="true"
+            <p-calendar dateFormat="dd/mm/yy" formControlName="dataFim" [showIcon]="true" [monthNavigator]="true"
               [yearNavigator]="true" yearRange="2019:2100" [locale]="locale">
             </p-calendar>
           </div>
         </div>
         <div class="ui-g">
           <div class="ui-sm-12 ui-md-6 ui-lg-6">
-            <label>Quantidade de Critérios: {{form.value.avaliacao ? form.value?.avaliacao?.criterios?.length : 0}}</label>&nbsp;&nbsp;
-            <button pButton type="button" (click)="criteriosAvaliacao()" label="Cadastrar Critérios de Avaliação"></button>
+            <label>Quantidade de Critérios:
+              {{form.value.avaliacao ? form.value?.avaliacao?.criterios?.length : 0}}</label>&nbsp;&nbsp;
+            <button pButton type="button" (click)="criteriosAvaliacao()"
+              label="Cadastrar Critérios de Avaliação"></button>
           </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6">
+            <label>Cadastrar Trabalhos</label>&nbsp;&nbsp;
+            <button pButton type="button" (click)="cadastrarTrabalho()" label="Trabalhos"></button>
+          </div>
+        </div>
+        <div class="ui-g" *ngIf="trabalhos.length >= 1">
+          <p-fieldset legend="Trabalhos">
+            <div class="ui-sm-12 ui-md-12 ui-lg-12" *ngFor="let tr of trabalhos">
+              Trabalho: {{tr.nome}}&nbsp;&nbsp;Link: {{tr.link}}&nbsp;&nbsp;Aluno(s): {{tr.alunos}}&nbsp;&nbsp;Avaliador: {{tr.avaliador}}&nbsp;&nbsp;Curso: {{tr.curso}}&nbsp;&nbsp;
+              <button pButton type="button" (click)="removerTrabalho(tr)" label="Remover"></button>
+            </div>
+          </p-fieldset>
         </div>
       </p-fieldset>
     </form>
@@ -51,3 +65,35 @@
     <button pButton type="button" (click)="salvar()" [disabled]="form.invalid" label="Salvar Evento"></button>
   </ion-toolbar>
 </ion-footer>
+
+<p-dialog header="Trabalhos" [(visible)]="dlgTrabalhos" modal=true>
+  <div class="ui-g">
+    <div class="ui-g-12 ui-fluid">
+      <label>Nome trabalho</label><br>
+      <input type="text" class="ui-fluid-metade" pInputText [(ngModel)]="trabalho.nome">
+    </div>
+    <div class="ui-g-12 ui-fluid">
+      <label>Aluno(s)</label><br>
+      <input type="text" class="ui-fluid-metade" pInputText [(ngModel)]="trabalho.alunos">
+    </div>
+    <div class="ui-g-12 ui-fluid">
+      <label>Link trabalho</label><br>
+      <input type="text" class="ui-fluid-metade" pInputText [(ngModel)]="trabalho.link">
+    </div>
+    <div class="ui-g-12 ui-fluid">
+      <label>Avaliador</label><br>
+      <p-dropdown [options]="avaliadores" placeholder="Selecione..." appendTo="body" [(ngModel)]="trabalho.avaliador">
+      </p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-fluid">
+      <label>Curso</label><br>
+      <input type="text" class="ui-fluid-metade" pInputText [(ngModel)]="trabalho.curso">
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button pButton type="button" (click)="adicionarTrabalho()" [disabled]="podeSalvarTrabalho()"
+        label="Salvar Trabalho"></button>
+    </div>
+  </p-footer>
+</p-dialog>

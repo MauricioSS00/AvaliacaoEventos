@@ -1,34 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Evento } from 'src/app/evento/evento.model';
+import { EventoService } from 'src/app/evento/evento.service';
+import { Subscription } from 'rxjs';
+import * as moment from 'moment';
+import 'moment/locale/pt-br';
 
 @Component({
   selector: 'app-avaliar',
   templateUrl: 'avaliar.page.html',
   styleUrls: ['avaliar.page.scss'],
 })
-export class AvaliarPage {
+export class AvaliarPage implements OnInit {
 
-  eventos: any[] = [
-    { descricao: 'Opa 1', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 2', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 3', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 4', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 5', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 6', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 7', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 8', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 9', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 10', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 11', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 12', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-    { descricao: 'Opa 13', dataIni: '26/10/2020', dataFim: '26/10/2020' },
-  ];
+  subs: Subscription = new Subscription();
+  eventos: any[] = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private eventoService: EventoService
   ) { }
 
-  acessarTrabalhos() {
-    this.router.navigateByUrl('/avaliar/trabalhos');
+  ngOnInit() {
+    this.listarEventos();
+  }
+
+  listarEventos() {
+    this.subs.add(this.eventoService.listarEvento()
+      .subscribe(r => {
+        this.eventos = r;
+      }));
+  }
+
+  formatarData(data: any) {
+    return moment.unix(data).format('DD/MM/YYYY');
+  }
+
+  acessarTrabalhos(event: any) {
+    this.router.navigateByUrl('/avaliar/trabalhos', {state: event });
   }
 }

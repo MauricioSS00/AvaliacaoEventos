@@ -26,11 +26,11 @@
           <div class="car-details">
             <div class="ui-g">
               <div class="ui-g-12">Nome: <b>{{evento.descricao}}</b></div>
-              <div class="ui-g-12">Data de ínicio: <b>{{evento.dataIni}}</b></div>
-              <div class="ui-g-12">Data de encerramento: <b>{{evento.dataFim}}</b></div>
+              <div class="ui-g-12">Data de ínicio: <b>{{formatarData(evento.dataIni)}}</b></div>
+              <div class="ui-g-12">Data de encerramento: <b>{{formatarData(evento.dataFim)}}</b></div>
             </div>
             <button pButton type="button" icon="far fa-clipboard" pTooltip="Ver Trabalhos" tooltipPosition="top"
-              (click)="acessarTrabalhos($event)"></button>
+              (click)="acessarTrabalhos(evento)"></button>
           </div>
         </div>
       </ng-template>
