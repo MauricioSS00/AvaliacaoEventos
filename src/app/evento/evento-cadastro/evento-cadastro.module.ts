@@ -11,6 +11,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 import { EventoCadastroPage } from './evento-cadastro.page';
 import { EventoCadastroPageRoutingModule } from './evento-cadastro-routing.module';
@@ -30,6 +31,7 @@ import { EventoCadastroPageRoutingModule } from './evento-cadastro-routing.modul
     CalendarModule,
     DialogModule,
     DropdownModule,
+    MultiSelectModule,
 
     EventoCadastroPageRoutingModule
   ],

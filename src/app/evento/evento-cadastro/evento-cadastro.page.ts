@@ -36,10 +36,9 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
   trabalho = {
     nome: '',
     link: '',
-    avaliador: '',
+    avaliador: [],
     curso: '',
     alunos: '',
-    avaliacao: [],
     situacao: 'Não Avaliado'
   };
   avaliadores: any[];
@@ -60,9 +59,8 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
       this.trabalhos = this.form.value.trabalhos;
     }
     this.subs.add(EventoService.criteriosAvaliacao.subscribe((avaliacao: any) => {
-      console.log(avaliacao);
       this.form.get('avaliacao').setValue(avaliacao);
-      this.adicionarAvaliacaoTrabalho();
+      this.adicionarAvaliacao();
     }));
   }
 
@@ -126,19 +124,51 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
   }
 
   adicionarTrabalho() {
-    this.trabalho.avaliacao = this.form.value.avaliacao;
+    let i = 0;
+    this.trabalho.avaliador.forEach(a => {
+      const id = a;
+      a = {
+        idAvaliador: id,
+        avaliacao: this.form.value.avaliacao
+      };
+      this.trabalho.avaliador[i] = a;
+      i++;
+    });
     this.trabalhos.push(this.trabalho);
     this.trabalho = {
       nome: '',
       link: '',
-      avaliador: '',
+      avaliador: [],
       curso: '',
       alunos: '',
-      avaliacao: [],
       situacao: 'Não Avaliado'
     };
     this.form.get('trabalhos').setValue(this.trabalhos);
     this.dlgTrabalhos = false;
+  }
+
+  adicionarAvaliacao() {
+    let i = 0;
+    this.trabalhos.forEach(t => {
+      t.avaliador.forEach(a => {
+        if (typeof a === 'string') {
+          const id = a;
+          a = {
+            idAvaliador: id,
+            avaliacao: this.form.value.avaliacao
+          };
+        } else {
+          const id = a.id;
+          a = {
+            idAvaliador: id,
+            avaliacao: this.form.value.avaliacao
+          };
+        }
+      });
+      this.trabalhos[i].avaliador = t.avaliador;
+      i++;
+    });
+    this.form.get('trabalhos').setValue(this.trabalhos);
   }
 
   removerTrabalho(trabalho: any) {
@@ -146,22 +176,25 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
     this.form.get('trabalhos').setValue(this.trabalhos);
   }
 
-  adicionarAvaliacaoTrabalho() {
-    this.trabalhos.forEach(t => {
-      t.avaliacao = this.form.value.avaliacao;
-    });
-  }
-
-  nomeAvaliador(idAvaliador: string) {
+  nomeAvaliador(idAvaliadores: any[]) {
     if (Array.isArray(this.avaliadores)) {
-      return this.avaliadores.filter(a => a.value === idAvaliador)[0].label;
+      let nome = '';
+      this.avaliadores.forEach(e => {
+        idAvaliadores.forEach(a => {
+          if (a === e.value) {
+            nome = nome.length === 0 ? e.label : `${nome}, ${e.label}`;
+          }
+        });
+      });
+      return nome;
     }
+    return '';
   }
 
   podeSalvarTrabalho() {
     if (this.trabalho.nome !== '') {
       if (this.trabalho.link !== '') {
-        if (this.trabalho.avaliador !== '') {
+        if (this.trabalho.avaliador.length >= 1) {
           if (this.trabalho.curso !== '') {
             if (this.trabalho.alunos !== '') {
               return false;

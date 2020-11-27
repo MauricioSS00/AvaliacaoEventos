@@ -82,8 +82,7 @@
     </div>
     <div class="ui-g-12 ui-fluid">
       <label>Avaliador</label><br>
-      <p-dropdown [options]="avaliadores" placeholder="Selecione..." appendTo="body" [(ngModel)]="trabalho.avaliador">
-      </p-dropdown>
+      <p-multiSelect [options]="avaliadores" defaultLabel="Selecione..." appendTo="body" [(ngModel)]="trabalho.avaliador"></p-multiSelect>
     </div>
     <div class="ui-g-12 ui-fluid">
       <label>Curso</label><br>
