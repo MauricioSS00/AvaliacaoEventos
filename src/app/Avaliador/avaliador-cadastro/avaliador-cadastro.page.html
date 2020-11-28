@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Avaliador - Cadastro
+      Usuário - Cadastro
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -21,8 +21,27 @@
         </div>
         <div class="ui-g">
           <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>E-mail</label><br>
+            <input type="text" class="ui-fluid-metade" pInputText formControlName="email">
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>Senha</label><br>
+            <input type="password" pPassword promptLabel="Digite..." weakLabel="Fraca" mediumLabel="Média" strongLabel="Forte"
+              formControlName="senha">
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
             <label>Área</label><br>
             <input type="text" class="ui-fluid-metade" pInputText formControlName="area">
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+            <label>Tipo</label><br>
+            <p-dropdown [options]="tipos" placeholder="Selecione..." formControlName="tipo"></p-dropdown>
           </div>
         </div>
       </p-fieldset>
@@ -32,6 +51,6 @@
 
 <ion-footer>
   <ion-toolbar class="formulario">
-    <button pButton type="button" [disabled]="form.invalid" (click)="salvar()" label="Salvar Avaliador"></button>
+    <button pButton type="button" [disabled]="form.invalid" (click)="salvar()" label="Salvar Usuário"></button>
   </ion-toolbar>
 </ion-footer>

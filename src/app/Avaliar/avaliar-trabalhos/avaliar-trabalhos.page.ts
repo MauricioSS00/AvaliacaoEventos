@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthGuardService } from '../../login/auth-guard-child.service';
 
 @Component({
   selector: 'app-avaliar-trabalhos',
@@ -8,18 +9,27 @@ import { Router } from '@angular/router';
 })
 export class AvaliarTrabalhosPage implements OnInit {
 
-  evento: any = {
-    trabalhos: []
-  };
+  evento: any;
+  trabalhos = [];
+
   constructor(
-    private router: Router
+    private router: Router,
+    public authService: AuthGuardService
+
   ) { }
 
   ngOnInit() {
     this.evento = this.router.getCurrentNavigation().extras.state;
+    this.evento.trabalhos.forEach(e => {
+      e.avaliador.forEach(a => {
+        if (a.idAvaliador === this.authService.user.id) {
+          this.trabalhos.push(Object.assign(e, {}));
+        }
+      });
+    });
   }
 
   acessarTrabalho() {
-    this.router.navigateByUrl('/avaliar/cadastro');
+    this.router.navigateByUrl('/avaliar/cadastro', { state: { idEvento: this.evento.id, criterios: this.evento.avaliacao } });
   }
 }

@@ -12,6 +12,10 @@ import { AvaliadorService } from '../avaliador.service';
 export class AvaliadorCadastroPage implements OnInit {
 
   form: FormGroup;
+  tipos = [
+    { label: 'Avaliador', value: 1 },
+    { label: 'Administração', value: 2 }
+  ];
 
   constructor(
     private router: Router,
@@ -29,7 +33,10 @@ export class AvaliadorCadastroPage implements OnInit {
     this.form = new FormGroup({
       id: new FormControl(),
       nome: new FormControl('', Validators.required),
-      area: new FormControl('', Validators.required)
+      email: new FormControl('', [Validators.required, Validators.email]),
+      senha: new FormControl('', Validators.required),
+      area: new FormControl('', Validators.required),
+      tipo: new FormControl('', Validators.required)
     });
   }
 

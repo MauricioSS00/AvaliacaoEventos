@@ -80,7 +80,7 @@ export class EventoCadastroPage implements OnInit, OnDestroy {
   }
 
   listarAvaliadores() {
-    this.subs.add(this.avaliadorService.listarAvaliador()
+    this.subs.add(this.avaliadorService.listarAvaliadorEvento()
       .subscribe(r => {
         this.avaliadores = r.map(a => ({ label: a.nome, value: a.id }));
       }));

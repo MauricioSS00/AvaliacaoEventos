@@ -10,6 +10,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
+import { PasswordModule } from 'primeng/password';
 
 import { AvaliadorCadastroPage } from './avaliador-cadastro.page';
 import { AvaliadorCadastroPageRoutingModule } from './avaliador-cadastro-routing.module';
@@ -28,6 +29,7 @@ import { AvaliadorCadastroPageRoutingModule } from './avaliador-cadastro-routing
     KeyFilterModule,
     CalendarModule,
     DropdownModule,
+    PasswordModule,
 
     AvaliadorCadastroPageRoutingModule
   ],

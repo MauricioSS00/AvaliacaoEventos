@@ -19,6 +19,10 @@ export class AvaliadorService {
     return this.firestore.collection(this.collection).valueChanges();
   }
 
+  listarAvaliadorEvento(): Observable<Avaliador[]> {
+    return this.firestore.collection(this.collection, ref => ref.where('tipo', '==', 1)).valueChanges();
+  }
+
   incluirAvaliador(avaliador: Avaliador) {
     if (!avaliador.id) {
       avaliador.id = this.firestore.createId();

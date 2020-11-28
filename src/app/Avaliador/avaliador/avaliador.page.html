@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Avaliadores
+      Usuários
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -28,11 +28,11 @@
       <ng-template pTemplate="summary" let-rowData>
         <div style="text-align:left">
           <button type="button" pButton icon="pi pi-plus" (click)="cadastrar()"
-            pTooltip="Cadastrar Avaliador" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
+            pTooltip="Cadastrar Usuário" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
           <button type="button" pButton icon="pi pi-pencil" (click)="editar()" [disabled]="!avaliador"
-            pTooltip="Editar Avaliador" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
+            pTooltip="Editar Usuário" tooltipPosition="top" class="botao-primario"></button>&nbsp;&nbsp;
           <button type="button" pButton icon="pi pi-trash" (click)="remover()" [disabled]="!avaliador"
-            pTooltip="Remover Avaliador" tooltipPosition="top" class="botao-primario"></button>
+            pTooltip="Remover Usuário" tooltipPosition="top" class="botao-primario"></button>
         </div>
       </ng-template>
     </p-table>

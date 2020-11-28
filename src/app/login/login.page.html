@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>Faça o login para acessar</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <div class="formulario">
+        <form autocomplete="off" [formGroup]="form">
+            <div class="ui-g">
+                <div class="ui-sm-12 ui-md-4 ui-lg-4 ui-fluid">
+                    <label>E-mail</label><br>
+                    <input type="text" pInputText formControlName="email">
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-sm-12 ui-md-4 ui-lg-4 ui-fluid">
+                    <label>Senha</label><br>
+                    <input type="password" pPassword [feedback]="false" formControlName="senha">
+                </div>
+            </div>
+        </form>
+        <div class="ui-g">
+            <button pButton type="button" [disabled]="form.invalid" label="Entrar" (click)="logar()"></button>
+        </div>
+    </div>
+</ion-content>

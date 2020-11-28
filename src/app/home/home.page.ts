@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthGuardService } from '../login/auth-guard-child.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +8,23 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  paginas = [
-    { titulo: 'Evento', rota: '/evento' },
-    { titulo: 'Avaliador', rota: '/avaliador' },
-    { titulo: 'Avaliar Apresentação', rota: '/avaliar' },
-    { titulo: 'Resultado dos Eventos', rota: '/evento' }
-  ];
+  paginas = [];
 
-  constructor() { }
+  constructor(
+    public authService: AuthGuardService
+  ) {
+    if (this.authService.user.tipo === 2) {
+      this.paginas = [
+        { titulo: 'Evento', rota: '/evento' },
+        { titulo: 'Usuário', rota: '/avaliador' },
+        { titulo: 'Avaliar Apresentação', rota: '/avaliar' },
+        { titulo: 'Resultado dos Eventos', rota: '/evento' }
+      ];
+    } else {
+      this.paginas = [
+        { titulo: 'Avaliar Apresentação', rota: '/avaliar' }
+      ];
+    }
+  }
 
 }
