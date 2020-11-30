@@ -11,6 +11,7 @@ export class AvaliarTrabalhosPage implements OnInit {
 
   evento: any;
   trabalhos = [];
+  situacaoTrab = [];
 
   constructor(
     private router: Router,
@@ -23,13 +24,18 @@ export class AvaliarTrabalhosPage implements OnInit {
     this.evento.trabalhos.forEach(e => {
       e.avaliador.forEach(a => {
         if (a.idAvaliador === this.authService.user.id) {
+          this.situacaoTrab.push(a.situacao ? a.situacao : 'Não Avaliado');
           this.trabalhos.push(Object.assign(e, {}));
         }
       });
     });
   }
 
-  acessarTrabalho() {
-    this.router.navigateByUrl('/avaliar/cadastro', { state: { idEvento: this.evento.id, criterios: this.evento.avaliacao } });
+  acessarTrabalho(trabalho: any) {
+    this.router.navigateByUrl('/avaliar/cadastro', {
+      state: {
+        idEvento: this.evento.id, nomeTrabalho: trabalho.nome, criterios: this.evento.avaliacao
+      }
+    });
   }
 }

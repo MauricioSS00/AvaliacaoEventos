@@ -18,7 +18,7 @@ export class HomePage {
         { titulo: 'Evento', rota: '/evento' },
         { titulo: 'Usuário', rota: '/avaliador' },
         { titulo: 'Avaliar Apresentação', rota: '/avaliar' },
-        { titulo: 'Resultado dos Eventos', rota: '/evento' }
+        { titulo: 'Resultado dos Eventos', rota: '/resultados/eventos' }
       ];
     } else {
       this.paginas = [

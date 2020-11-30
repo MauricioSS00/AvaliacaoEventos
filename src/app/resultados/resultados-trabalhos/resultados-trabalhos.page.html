@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Resultados - Trabalhos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="formulario">
+    <p-fieldset *ngFor="let trabalho of evento.trabalhos" legend="Trabalho: {{trabalho.nome}}">
+      <div class="ui-g">
+        <div class="ui-sm-12 ui-md-6 ui-lg-6">
+          <label>Aluno(s): {{trabalho.alunos}}</label><br>
+          <label>Curso: {{trabalho.curso}}</label>
+        </div>
+      </div>
+      <h3>Avaliações por Avaliador</h3>
+      <p-fieldset *ngFor="let avaliacao of trabalho.avaliador"
+        legend="Avaliador: {{nomeAvaliador(avaliacao.idAvaliador)}} - Situação: {{avaliacao.situacao ? avaliacao.situacao : 'Não Avaliado'}}">
+        <p-fieldset *ngFor="let c of avaliacao.avaliacao; let i = index" legend="Pergunta {{i+1}}">
+          <div class="ui-g">
+            <div *ngIf="c.tipo == 1" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+              <label>{{c.descricao}}</label><br>
+              <textarea [rows]="5" [(ngModel)]="c.respostaPerg" [cols]="30" class="ui-fluid" pInputTextarea autoResize="autoResize" [disabled]="true"></textarea>
+            </div>
+            <div *ngIf="c.tipo == 2" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+              <label>{{c.descricao}}</label><br>
+              <p-slider [(ngModel)]="c.respostaPerg" #nota [min]="c.notaMin" [max]="c.notaMax" [disabled]="true"></p-slider><br>
+              <label>Nota Informada: {{nota.value}}</label>
+            </div>
+            <div *ngIf="c.tipo == 3" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+              <span *ngFor="let possivel of c.possiveisRespostas" style="padding: 6px;">
+                <p-checkbox [(ngModel)]="c.respostaPerg" name="possivelResp" value={{possivel}}  label={{possivel}} [disabled]="true"></p-checkbox>&nbsp;&nbsp;
+              </span>
+            </div>
+            <div *ngIf="c.tipo == 4" class="ui-sm-12 ui-md-6 ui-lg-6 ui-fluid">
+              <span *ngFor="let possivel of c.possiveisRespostas" style="padding: 6px;">
+                <p-radioButton [(ngModel)]="c.respostaPerg" name="possivelResp" label={{possivel}} [disabled]="true"></p-radioButton>&nbsp;&nbsp;
+              </span>
+            </div>
+          </div>
+        </p-fieldset>
+      </p-fieldset>
+    </p-fieldset>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="formulario">
+    <button pButton type="button" (click)="voltar()" label="Voltar"></button>
+  </ion-toolbar>
+</ion-footer>

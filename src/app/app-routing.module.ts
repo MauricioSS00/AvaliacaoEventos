@@ -4,6 +4,16 @@ import { AuthGuardService } from './login/auth-guard-child.service';
 
 const routes: Routes = [
   {
+    path: 'resultados/trabalhos',
+    loadChildren: () => import('./resultados/resultados-trabalhos/resultados-trabalhos.module').then(m => m.ResultadosTrabalhosPageModule),
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'resultados/eventos',
+    loadChildren: () => import('./resultados/resultados-eventos/resultados-eventos.module').then(m => m.ResultadosEventosPageModule),
+    canActivate: [AuthGuardService]
+  },
+  {
     path: 'avaliar/trabalhos',
     loadChildren: () => import('./avaliar/avaliar-trabalhos/avaliar-trabalhos.module').then(m => m.AvaliarTrabalhosPageModule),
     canActivate: [AuthGuardService]

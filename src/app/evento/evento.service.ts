@@ -16,6 +16,10 @@ export class EventoService {
     private firestore: AngularFirestore
   ) { }
 
+  listarEventoId(idEvento: string): Observable<Evento[]> {
+    return this.firestore.collection(this.collection, ref => ref.where('id', '==', idEvento)).valueChanges();
+  }
+
   listarEvento(): Observable<Evento[]> {
     return this.firestore.collection(this.collection).valueChanges();
   }
@@ -29,5 +33,9 @@ export class EventoService {
 
   removerEvento(id: string) {
     this.firestore.collection(this.collection).doc(id).delete();
+  }
+
+  atualizarEvento(evento: Evento) {
+    this.firestore.collection(this.collection).doc(evento.id).update(evento);
   }
 }
